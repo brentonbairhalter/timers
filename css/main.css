@@ -3,12 +3,17 @@
 }
 
 .js-timer {
-  height: 230px;
+  height: 260px;
 }
 
 .message {
   height: 34px;
 }
+
+.panel.panel-primary { 
+  padding-left: 0px;  
+  padding-right: 0px;
+}   
 
 
 

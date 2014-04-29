@@ -6,7 +6,7 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
               'id': 0,
               'labelMessage': 'Please select a round',
               'rdData':[
-                {'round': 0, 'dur': 30, 'text': 'Deck Construction'},
+                {'round': 0, 'dur': 1200, 'text': 'Deck Construction'},
                 {'round': 1, 'dur': 3000, 'text': 'Round 1'},
                 {'round': 2, 'dur': 3000, 'text': 'Round 2'},
                 {'round': 3, 'dur': 3000, 'text': 'Round 3'}
@@ -47,6 +47,8 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
                _this.element.find('[data-update=start]').removeClass('hide').addClass('show');
                _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
                _this.element.find('[data-update=resume]').removeClass('show').addClass('hide');
+               _this.element.find('.clock').removeClass('alert-danger').removeClass('hide').addClass('alert-info').addClass('show');
+
             },
             '[data-update=start] click': function(el, ev){
               var _this = this;
@@ -100,7 +102,7 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
               _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
               _this.element.find('.js-round-select').removeClass('hide').addClass('show');
               // $(_this.element).find('[data-update=start]').removeClass('hide').addClass('show');
-              _this.element.find('[data-update=resume]').removeClass('hide').addClass('show');
+              _this.element.find('[data-update=resume]').removeClass('hide').addClass('show');              
               clearInterval(_this.countdown);
             },
             //completed round ... add a tally?
@@ -118,7 +120,7 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
             },
             warnCountDown: function(){
               var _this = this;
-              $(_this.element).addClass('warn-box');
+              _this.element.find('.clock').removeClass('alert-info').addClass('alert-danger');
             },
             warn: function(){
               //helper message for something that needs entered
