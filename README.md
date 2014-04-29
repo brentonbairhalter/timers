@@ -1,4 +1,4 @@
-timers
+### timers
 ======
 
 basic countdown timers w/ inputs
@@ -9,3 +9,4 @@ basic countdown timers w/ inputs
 4) paused timer can be reset by selecting new option from dropdown, otherwise resume countdown
 
 
+http://bleedblackngold.com/fun/demos/timers/
