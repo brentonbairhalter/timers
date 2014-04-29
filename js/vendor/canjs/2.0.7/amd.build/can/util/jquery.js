@@ -1,0 +1,11 @@
+/*!
+ * CanJS - 2.0.7
+ * http://canjs.us/
+ * Copyright (c) 2014 Bitovi
+ * Wed, 26 Mar 2014 16:12:27 GMT
+ * Licensed MIT
+ * Includes: CanJS default build
+ * Download from: http://canjs.us/
+ */
+
+define(["jquery","can/util/can","can/util/array/each","can/util/inserted","can/util/event"],function(e,t){var n=function(e){return e.nodeName&&(e.nodeType===1||e.nodeType===9)||e==window};e.extend(t,e,{trigger:function(r,i,s){n(r)?e.event.trigger(i,s,r,!0):r.trigger?r.trigger(i,s):(typeof i=="string"&&(i={type:i}),i.target=i.target||r,t.dispatch.call(r,i,s))},addEvent:t.addEvent,removeEvent:t.removeEvent,buildFragment:function(t,n){var r=e.buildFragment,i;return t=[t],n=n||document,n=!n.nodeType&&n[0]||n,n=n.ownerDocument||n,i=r.call(jQuery,t,n),i.cacheable?e.clone(i.fragment):i.fragment||i},$:e,each:t.each,bind:function(r,i){return this.bind&&this.bind!==t.bind?this.bind(r,i):n(this)?e.event.add(this,r,i):t.addEvent.call(this,r,i),this},unbind:function(r,i){return this.unbind&&this.unbind!==t.unbind?this.unbind(r,i):n(this)?e.event.remove(this,r,i):t.removeEvent.call(this,r,i),this},delegate:function(t,r,i){return this.delegate?this.delegate(t,r,i):n(this)&&e(this).delegate(t,r,i),this},undelegate:function(t,r,i){return this.undelegate?this.undelegate(t,r,i):n(this)&&e(this).undelegate(t,r,i),this},proxy:function(e,t){return function(){return e.apply(t,arguments)}}}),t.on=t.bind,t.off=t.unbind,e.each(["append","filter","addClass","remove","data","get","has"],function(e,n){t[n]=function(e){return e[n].apply(e,t.makeArray(arguments).slice(1))}});var r=e.cleanData;e.cleanData=function(n){e.each(n,function(e,n){n&&t.trigger(n,"removed",[],!1)}),r(n)};var i=e.fn.domManip,s;return e.fn.domManip=function(e,t,n){for(var r=1;r<arguments.length;r++)if(typeof arguments[r]=="function"){s=r;break}return i.apply(this,arguments)},e(document.createElement("div")).append(document.createElement("div")),e.fn.domManip=s===2?function(e,n,r){return i.call(this,e,n,function(e){var n=e.nodeType===11?t.makeArray(e.childNodes):null,i=r.apply(this,arguments);return t.inserted(n?n:[e]),i})}:function(e,n){return i.call(this,e,function(e){var r=e.nodeType===11?t.makeArray(e.childNodes):null,i=n.apply(this,arguments);return t.inserted(r?r:[e]),i})},e.event.special.inserted={},e.event.special.removed={},t});
