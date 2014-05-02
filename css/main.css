@@ -3,7 +3,8 @@
 }
 
 .js-timer {
-  height: 260px;
+  height: 305px;
+  
 }
 
 .message {
@@ -14,6 +15,21 @@
   padding-left: 0px;  
   padding-right: 0px;
 }   
+
+.clock {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+    -webkit-transition: all 3.5s ease;
+    -moz-transition: all 3.5s ease;
+    -o-transition: all 3.5s ease;
+    transition: all 3.5s ease;
+}
+
+h1.clock { 
+  font-size: 135px;  
+}
 
 
 

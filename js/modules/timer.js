@@ -86,7 +86,7 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
                 _this.duration = moment.duration(_this.duration.asMilliseconds() - _this.interval, 'milliseconds');
                 _this.element.find('.clock').text(moment(_this.duration.asMilliseconds()).format('mm:ss'));
                 console.log(_this.duration.asMilliseconds());
-                if(_this.duration.asMilliseconds() === 9000){
+                if(_this.duration.asMilliseconds() === 10000){
                   _this.warnCountDown();
                 }
                 
