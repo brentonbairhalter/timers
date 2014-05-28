@@ -31,6 +31,13 @@ h1.clock {
   font-size: 135px;  
 }
 
+.panel-title { 
+  font-size: 28px;
+}
+
+.btn-primary.btn-block {
+  margin-top: 0;
+}
 
 
 

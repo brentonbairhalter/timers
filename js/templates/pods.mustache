@@ -1,5 +1,5 @@
 <div class="panel-heading">
-<h3 class="panel-title">Pod {{id}}</h3>
+<h3 class="panel-title"><strong>Pod {{id}}</strong></h3>
 </div>
 <div class="panel-body">
   <div class="row pod-head center-block">
@@ -7,7 +7,15 @@
     <div class="message hide"></div>
     <h1 class="clock alert alert-info hide"></h1>
   </div>  
-  <div><button type="button" class="btn btn-primary btn-sm btn-block hide" data-update="start">Start Round</button></div>
-  <div><button type="button" class="btn btn-primary btn-sm btn-block hide" data-update="stop">Stop Round</button></div>
-  <div><button type="button" class="btn btn-primary btn-sm btn-block hide" data-update="resume">Resume Round</button></div>
+  <div>
+    <button type="button" class="btn btn-primary btn-sm btn-block hide" data-update="start">Start Round</button>
+    <button type="button" class="btn btn-primary btn-sm btn-block hide" data-update="stop">Stop Round</button>
+     <div class="resume col-md-6 hide">   
+        <button type="button" class="btn btn-primary btn-sm btn-block" data-update="resume">Resume Round</button>
+      </div>
+      <div class="reset col-md-6 hide">
+        <button type="button" class="btn btn-primary btn-sm btn-block" data-update="reset">Reset Round</button>
+      </div>
+    </div>
+  </div>
  </div> 

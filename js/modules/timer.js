@@ -37,18 +37,7 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
             },
             '.js-round-select change': function(el){
                 var _this = this;
-                _this.display.attr('duration', el.find('option:selected').val());
-                _this.display.attr('round', el.find('option:selected').data('round'));
-                _this.display.attr('labelMessage', el.find('option:selected').data('text') + '...');
-                
-                _this.duration = moment.duration(_this.display.attr('duration') * 1000, 'milliseconds');
-
-               _this.element.find('.clock').text(moment(_this.duration.asMilliseconds()).format('mm:ss'));
-               _this.element.find('[data-update=start]').removeClass('hide').addClass('show');
-               _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
-               _this.element.find('[data-update=resume]').removeClass('show').addClass('hide');
-               _this.element.find('.clock').removeClass('alert-danger').removeClass('hide').addClass('alert-info').addClass('show');
-
+                _this.setTimer(el);
             },
             '[data-update=start] click': function(el, ev){
               var _this = this;
@@ -70,8 +59,32 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
             '[data-update=resume] click': function(el, ev){
               var _this = this;
               ev.preventDefault();
-                //stop the timer
+                //start the timer
                 _this.startCountDown();
+            },
+            '[data-update=reset] click': function(el, ev){
+              var _this = this;
+              ev.preventDefault();
+                //stop the timer
+                _this.endCountDown();
+                _this.setTimer(_this.element.find('.js-round-select')); 
+                _this.startCountDown();
+            },
+            setTimer: function(el){
+              var _this = this;
+                _this.display.attr('duration', el.find('option:selected').val());
+                _this.display.attr('round', el.find('option:selected').data('round'));
+                _this.display.attr('labelMessage', el.find('option:selected').data('text') + '...');
+                
+                _this.duration = moment.duration(_this.display.attr('duration') * 1000, 'milliseconds');
+
+               _this.element.find('.clock').text(moment(_this.duration.asMilliseconds()).format('mm:ss'));
+               _this.element.find('[data-update=start]').removeClass('hide').addClass('show');
+               _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
+               _this.element.find('.resume').removeClass('show').addClass('hide');
+               _this.element.find('.reset').removeClass('show').addClass('hide');
+               _this.element.find('.clock').removeClass('alert-danger').removeClass('hide').addClass('alert-info').addClass('show');
+
             },
             startCountDown: function(){
               var _this = this;
@@ -80,12 +93,13 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
               _this.element.find('[data-update=start]').removeClass('show').addClass('hide');
               _this.element.find('.js-round-select').removeClass('show').addClass('hide');
               _this.element.find('[data-update=stop]').removeClass('hide').addClass('show');
-              _this.element.find('[data-update=resume]').removeClass('show').addClass('hide');
+              _this.element.find('.reset').removeClass('show').addClass('hide');
+              _this.element.find('.resume').removeClass('show').addClass('hide');
+              
 
               _this.countdown = setInterval(function(){
                 _this.duration = moment.duration(_this.duration.asMilliseconds() - _this.interval, 'milliseconds');
                 _this.element.find('.clock').text(moment(_this.duration.asMilliseconds()).format('mm:ss'));
-                console.log(_this.duration.asMilliseconds());
                 if(_this.duration.asMilliseconds() === 10000){
                   _this.warnCountDown();
                 }
@@ -101,8 +115,8 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
               _this.element.find('.message').text(_this.display.attr('labelMessage')).removeClass('show').addClass('hide');
               _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
               _this.element.find('.js-round-select').removeClass('hide').addClass('show');
-              // $(_this.element).find('[data-update=start]').removeClass('hide').addClass('show');
-              _this.element.find('[data-update=resume]').removeClass('hide').addClass('show');              
+              _this.element.find('.resume').removeClass('hide').addClass('show'); 
+              _this.element.find('.reset').removeClass('hide').addClass('show');             
               clearInterval(_this.countdown);
             },
             //completed round ... add a tally?
@@ -110,11 +124,12 @@ define(['can', 'moment', 'bootstrap','domReady!'], function(can,moment){
               var _this = this;
               //update display and clear vals
               _this.element.find('.message').text(_this.display.attr('labelMessage')).removeClass('show').addClass('hide');
-              _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
               _this.element.find('.js-round-select').removeClass('hide').addClass('show');
+              _this.element.find('[data-update=stop]').removeClass('show').addClass('hide');
               _this.element.find('[data-update=start]').removeClass('show').addClass('hide');
               _this.element.find('.clock').removeClass('show').addClass('hide');
-              _this.element.find('[data-update=resume]').removeClass('show').addClass('hide');
+              _this.element.find('.resume').removeClass('show').addClass('hide');
+              _this.element.find('.reset').removeClass('show').addClass('hide');
 
               clearInterval(_this.countdown);
             },
