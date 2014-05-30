@@ -57,6 +57,12 @@ h1.clock {
   margin-top: 0;
 }
 
+.alert-danger {
+    background-image: linear-gradient(to bottom, #E84747 0px, #550D0D 100%);
+    background-repeat: repeat-x;
+    border-color: #DCA7A7;
+}
+
 
 
 
